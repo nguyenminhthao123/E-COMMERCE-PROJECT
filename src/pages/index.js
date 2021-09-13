@@ -1,0 +1,10 @@
+import AboutPage from './AboutPage'
+import CartPage from './CartPage'
+import ProductsPage from './ProductsPage'
+import SingleProductPage from './SingleProductPage'
+import ErrorPage from './ErrorPage'
+import CheckoutPage from './CheckoutPage'
+import HomePage from './HomePage'
+import AuthWrapper from './AuthWrapper'
+import PrivateRoute from './PrivateRoute'
+export {AboutPage,AuthWrapper,CheckoutPage,ErrorPage,HomePage,ProductsPage,SingleProductPage,CartPage,PrivateRoute}
