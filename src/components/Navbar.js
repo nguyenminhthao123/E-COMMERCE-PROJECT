@@ -9,7 +9,25 @@ import { useProductsContext } from '../context/products_context'
 import { useUserContext } from '../context/user_context'
 
 const Nav = () => {
-  return <h4>navbar</h4>
+  const {openSidebar}=useProductsContext()
+  return <NavContainer>
+    <div className="nav-center">
+      <div className="nav-header">
+        <Link to="/"> <img src={logo} alt="logo"></img></Link>
+        <button className="nav-toggle" onClick={openSidebar}><FaBars /></button>
+      </div>
+      <ul className="nav-links">
+        {links.map((item, index) => {
+          return <li key={index}>
+            <Link to={item.url}>{item.text}</Link>
+          </li>
+        })}
+      </ul>
+      <div className="cart-btn-wrapper">
+        <CartButtons />
+      </div>
+    </div>
+  </NavContainer>
 }
 
 const NavContainer = styled.nav`
@@ -75,6 +93,7 @@ const NavContainer = styled.nav`
     }
     .cart-btn-wrapper {
       display: grid;
+     
     }
   }
 `
