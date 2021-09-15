@@ -20,3 +20,6 @@
 
 .env file in the root
 FAST_REFRESH=FALSE
+### Formspree 
+https://formspree.io/forms/mqkwnerg/integration
+cấu hình form gửi yêu cầu khách hàng 

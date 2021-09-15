@@ -2,7 +2,20 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Contact = () => {
-  return <h4>contact section</h4>
+  return <Wrapper>
+
+    <div className="section-center">
+      <h3>Join our newsletter and get 20% off</h3>
+      <div className="content">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat sint unde quaerat ratione soluta veniam provident adipisci cumque eveniet tempore?</p>
+        <form className="contact-form">
+        <input className="form-input" placeholder="Enter Email" type="email"></input>
+        <button className="submit-btn" type="submit">Subscribe</button>
+      </form>
+      </div>
+      
+    </div>
+  </Wrapper>
 }
 const Wrapper = styled.section`
   padding: 5rem 0;
@@ -19,6 +32,7 @@ const Wrapper = styled.section`
     max-width: 500px;
     display: grid;
     grid-template-columns: 1fr auto;
+    
   }
 
   .form-input,
@@ -59,6 +73,7 @@ const Wrapper = styled.section`
       align-items: center;
       gap: 8rem;
       margin-top: 2rem;
+     
     }
     p {
       margin-bottom: 0;
