@@ -9,7 +9,7 @@ import { useProductsContext } from '../context/products_context'
 import { useUserContext } from '../context/user_context'
 
 const Nav = () => {
-  const {openSidebar}=useProductsContext()
+  const { openSidebar } = useProductsContext()
   return <NavContainer>
     <div className="nav-center">
       <div className="nav-header">
@@ -35,7 +35,6 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
-
   .nav-center {
     width: 90vw;
     margin: 0 auto;

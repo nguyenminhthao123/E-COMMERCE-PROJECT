@@ -23,6 +23,49 @@ const products_reducer = (state, action) => {
         isSidebarOpen:false
       }
     }
+    case GET_PRODUCTS_BEGIN:{
+      return {
+        ...state,
+        products_begin:true
+      }
+    }
+    case GET_PRODUCTS_SUCCESS:{
+      const {payload:products}=action
+     const products_featured= products.filter((product)=>{
+        return product.featured===true
+      })
+      return {
+        ...state,
+        products_featured:products_featured.slice(0,3),
+        products:products,
+        products_begin:false,
+      }
+    }
+    case GET_PRODUCTS_ERROR:{
+      return {
+        ...state,
+        products_error:true
+      }
+    }
+    case GET_SINGLE_PRODUCT_BEGIN:{
+      return {
+        ...state,
+        products_single_begin:true,
+      }
+    }
+    case GET_SINGLE_PRODUCT_SUCCESS:{
+      return {
+        ...state,
+        products_single:action.payload,
+        products_single_begin:false,
+      }
+    }
+    case GET_SINGLE_PRODUCT_ERROR:{
+      return {
+        ...state,
+        products_single_error:true
+      }
+    }
     default:return state
   }
   throw new Error(`No Matching "${action.type}" - action type`)

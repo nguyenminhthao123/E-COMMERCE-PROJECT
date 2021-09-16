@@ -23,3 +23,5 @@ FAST_REFRESH=FALSE
 ### Formspree 
 https://formspree.io/forms/mqkwnerg/integration
 cấu hình form gửi yêu cầu khách hàng 
+### Intl.NumberFormat 
+định dạng tiền tệ trong javaScript

@@ -1,8 +1,37 @@
 import React from 'react'
 import styled from 'styled-components'
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs'
-const Stars = () => {
-  return <h4>stars</h4>
+const Stars = ({stars,reviews}) => {
+  return <Wrapper>
+    <div className="start">
+    {/* start */}
+    <span>
+      {stars>=1?<BsStarFill/>:stars>=0.5?<BsStarHalf/>:<BsStar/>}
+    </span>
+    {/* end */}
+    {/* start */}
+    <span>
+      {stars>=2?<BsStarFill/>:stars>=1.5?<BsStarHalf/>:<BsStar/>}
+    </span>
+    {/* end */}
+    {/* start */}
+    <span>
+      {stars>=3?<BsStarFill/>:stars>=2.5?<BsStarHalf/>:<BsStar/>}
+    </span>
+    {/* end */}
+    {/* start */}
+    <span>
+      {stars>=4?<BsStarFill/>:stars>=3.5?<BsStarHalf/>:<BsStar/>}
+    </span>
+    {/* end */}
+    {/* start */}
+    <span>
+      {stars===5?<BsStarFill/>:stars>=4.5?<BsStarHalf/>:<BsStar/>}
+    </span>
+    {/* end */}
+    </div>
+    <div className="review">({reviews} customer reviews)</div>
+  </Wrapper>
 }
 
 const Wrapper = styled.div`
