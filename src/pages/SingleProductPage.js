@@ -26,7 +26,7 @@ const SingleProductPage = () => {
   if (error) {
     return <Error />
   }
-  const { name, price, description, stock, id: suku, company, images,stars,reviews } = products
+  const { name, price, description, stock, id: suku, company, images,stars,reviews,colors } = products
   return <Wrapper>
     <PageHero products title={name}></PageHero>
     <div className="section section-center page">
@@ -51,7 +51,7 @@ const SingleProductPage = () => {
             {company}
           </p>
           <hr></hr>
-          {stock > 0 && <AddToCart />}
+          {stock > 0 && <AddToCart colors={colors} stock={stock} />}
         </section>
       </div>
     </div>

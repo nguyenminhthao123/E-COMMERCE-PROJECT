@@ -1,34 +1,37 @@
 import React from 'react'
 import styled from 'styled-components'
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs'
-const Stars = ({stars,reviews}) => {
+const Stars = ({ stars, reviews }) => {
+  const templateStars = () => {
+    let value = []
+    for (var i = 1; i <= 5; i++) {
+      let number = i - 0.5
+      value.push((
+        <span key={i}>
+          {stars >= i ? <BsStarFill /> : stars >= number ? <BsStarHalf /> : <BsStar />}
+        </span>
+      ))
+    }
+    return value
+  }
   return <Wrapper>
     <div className="start">
-    {/* start */}
-    <span>
-      {stars>=1?<BsStarFill/>:stars>=0.5?<BsStarHalf/>:<BsStar/>}
+      {templateStars()}
+    {/* <span >
+          {stars >= 1 ? <BsStarFill /> : stars >= 0.5 ? <BsStarHalf /> : <BsStar />}
     </span>
-    {/* end */}
-    {/* start */}
-    <span>
-      {stars>=2?<BsStarFill/>:stars>=1.5?<BsStarHalf/>:<BsStar/>}
+    <span >
+          {stars >= 2 ? <BsStarFill /> : stars >= 1.5 ? <BsStarHalf /> : <BsStar />}
     </span>
-    {/* end */}
-    {/* start */}
-    <span>
-      {stars>=3?<BsStarFill/>:stars>=2.5?<BsStarHalf/>:<BsStar/>}
+    <span >
+          {stars >= 3 ? <BsStarFill /> : stars >= 2.5 ? <BsStarHalf /> : <BsStar />}
     </span>
-    {/* end */}
-    {/* start */}
-    <span>
-      {stars>=4?<BsStarFill/>:stars>=3.5?<BsStarHalf/>:<BsStar/>}
+    <span >
+          {stars >= 4 ? <BsStarFill /> : stars >= 3.5 ? <BsStarHalf /> : <BsStar />}
     </span>
-    {/* end */}
-    {/* start */}
-    <span>
-      {stars===5?<BsStarFill/>:stars>=4.5?<BsStarHalf/>:<BsStar/>}
-    </span>
-    {/* end */}
+    <span >
+          {stars >= 5 ? <BsStarFill /> : stars >= 4.5 ? <BsStarHalf /> : <BsStar />}
+    </span> */}
     </div>
     <div className="review">({reviews} customer reviews)</div>
   </Wrapper>
