@@ -17,6 +17,18 @@ const initialState = {
   all_products: [],
   girdView: true,
   listView:false,
+  sort:'price-lowest',
+  filter: {
+    text:'',
+    category:'all',
+    company:'all',
+    color:'all',
+    min_price:0,
+    max_price:0,
+    price:0,
+    shipping:false,
+
+  }
 
 }
 
@@ -31,14 +43,35 @@ export const FilterProvider = ({ children }) => {
   const listViews=()=>{
     dispatch({type:SET_LISTVIEW})
   }
+  const sortProducts= (e)=>{
+   const value=  e.target.value;
+    dispatch({type:UPDATE_SORT, payload:value})
+  }
+  const filterProducts=  (e)=>{
+    let name=e.target.name
+    let value=e.target.value
+    if(name==="category")
+    {
+      value=(e.target.textContent)
+    }
+    console.log(value)
+    dispatch({type:UPDATE_FILTERS,payload:{name,value}})
+   }
   useEffect(() => {
     dispatch({ type: LOAD_PRODUCTS, payload: products })
   }, [products])
+  useEffect(() => {
+    dispatch({ type:FILTER_PRODUCTS})
+    dispatch({ type:SORT_PRODUCTS})
+    
+  },[state.sort,products,state.filter])
   return (
     <FilterContext.Provider value={{
       ...state,
       girdViews,
-      listViews
+      listViews,
+      sortProducts,
+      filterProducts
     }}>
       {children}
     </FilterContext.Provider>

@@ -5,9 +5,38 @@ import { getUniqueValues, formatPrice } from '../utils/helpers'
 import { FaCheck } from 'react-icons/fa'
 
 const Filters = () => {
+  const {all_products,filterProducts,filter: {
+    text,
+    category,
+    company,
+    color,
+    min_price,
+    max_price,
+    price,
+    shipping,
+  }}=useFilterContext()
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+  const Category=getUniqueValues(all_products,'category')
+  const Company=getUniqueValues(all_products,'company')
+  const Colors=getUniqueValues(all_products,'colors')
+  const Price=getUniqueValues(all_products,'Price')
+ 
+  
   return <Wrapper>
     <div className="content">
-    <h4>filters</h4>
+      <form onSubmit={handleSubmit}>
+        <div className="form-control">
+        <input type="text" className="search-input" name='text' value={text} onChange={filterProducts}></input>
+        </div>
+        <div className="form-control">
+          <h5>Category</h5>
+          {Category.map((item, index)=>{
+            return <button key={index} type="button" name="category" onClick={filterProducts}>{item}</button>
+          })}
+        </div>
+      </form> 
     </div>
   </Wrapper>
 }

@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import { formatPrice } from '../utils/helpers'
 import { Link } from 'react-router-dom'
-const ListView = ({all_products}) => {
+const ListView = ({filter_products}) => {
   return (
     <Wrapper>
-      {all_products.map((product,index) => {
+      {filter_products.map((product,index) => {
         return <article key={index}>
           <img src={product.image} alt={product.name}></img>
           <div>
