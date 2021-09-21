@@ -49,11 +49,9 @@ export const ProductsProvider = ({ children }) => {
     try {
       const response = await axios.get(url)
       const data =response.data
-      console.log(data)
       dispatch({type:GET_SINGLE_PRODUCT_SUCCESS,payload:data})
     } catch (error) {
       dispatch({type:GET_SINGLE_PRODUCT_ERROR})
-      console.log(error)
     }
   }
 

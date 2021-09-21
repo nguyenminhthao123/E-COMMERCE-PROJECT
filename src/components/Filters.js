@@ -5,7 +5,7 @@ import { getUniqueValues, formatPrice } from '../utils/helpers'
 import { FaCheck } from 'react-icons/fa'
 
 const Filters = () => {
-  const {all_products,filterProducts,filter: {
+  const { all_products, filterProducts,clearFilters, filter: {
     text,
     category,
     company,
@@ -14,29 +14,62 @@ const Filters = () => {
     max_price,
     price,
     shipping,
-  }}=useFilterContext()
+  } } = useFilterContext()
   const handleSubmit = (e) => {
     e.preventDefault();
   }
-  const Category=getUniqueValues(all_products,'category')
-  const Company=getUniqueValues(all_products,'company')
-  const Colors=getUniqueValues(all_products,'colors')
-  const Price=getUniqueValues(all_products,'Price')
- 
-  
+  const Category = getUniqueValues(all_products, 'category')
+  const Company = getUniqueValues(all_products, 'company')
+  const Colors = getUniqueValues(all_products, 'colors')
+  // const Price = getUniqueValues(all_products, 'Price')
   return <Wrapper>
     <div className="content">
       <form onSubmit={handleSubmit}>
         <div className="form-control">
-        <input type="text" className="search-input" name='text' value={text} onChange={filterProducts}></input>
+          <input type="text" className="search-input" name='text' value={text} onChange={filterProducts}></input>
         </div>
+        {/* category */}
         <div className="form-control">
           <h5>Category</h5>
-          {Category.map((item, index)=>{
-            return <button key={index} type="button" name="category" onClick={filterProducts}>{item}</button>
+          {Category.map((item, index) => {
+            return <button key={index} type="button" name="category" onClick={filterProducts} className={category === item ? 'active' : null}>{item}</button>
           })}
         </div>
-      </form> 
+        {/* company */}
+        <div className="form-control">
+          <h5>Company</h5>
+          <select name="company" id="company" className='company' value={company} onChange={filterProducts} >
+            {Company.map((item, index) => {
+              return ( <option value={item} key={index} >{item}</option>)})}
+          </select>
+        </div>
+        {/* colors */}
+        <div className="form-control">
+          <h5>Colors</h5>
+          <div className="colors">
+            {Colors.map((item, index)=>{
+              if (item==='all') {
+                return <button type="button" name='color' onClick={filterProducts} value={item} key={index} className={`${color==='all'? 'all-btn active':'all-btn'}`} >All</button>
+              }
+              return <button key={index} className={color===item?'color-btn active':'color-btn'} name='color' value={item} style={{ backgroundColor:`${item}`}} onClick={filterProducts} >
+               {color===item?<FaCheck/>:null}
+              </button>
+            })}
+          </div>
+        </div>
+        {/* price */}
+        <div className="form-control">
+          <h5>Price</h5>
+          <p  className="price" >{formatPrice(price)}</p>
+          <input type="range" name="price" min={min_price} max={max_price} onChange={filterProducts} value={price} ></input>
+        </div>
+        {/* shipping */}
+        <div className="form-control shipping">
+          <label>Free Shipping</label>
+          <input type="checkbox" name="shipping" onClick={filterProducts} checked={shipping}></input>
+        </div>
+      </form>
+      <button type="button" className="clear-btn" onClick={()=>clearFilters(max_price)}>clear filters</button>
     </div>
   </Wrapper>
 }

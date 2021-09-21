@@ -58,13 +58,13 @@ const filter_reducer = (state, action) => {
       }
       if(sort==="price-highest")
       {
-        var newProduct=filter_products.sort((a,b)=>{
+       newProduct=filter_products.sort((a,b)=>{
           return b.price - a.price;
         })
       }
       if(sort==="name-a")
       {
-        var newProduct=filter_products.sort((a,b)=>{
+         newProduct=filter_products.sort((a,b)=>{
          if (a.name>b.name) return 1;
          if (a.name<b.name) return -1;
          return 0;
@@ -72,7 +72,7 @@ const filter_reducer = (state, action) => {
       }
       if(sort==="name-z")
       {
-        var newProduct=filter_products.sort((a,b)=>{
+         newProduct=filter_products.sort((a,b)=>{
           if (a.name>b.name) return -1;
          if (a.name<b.name) return 1;
          return 0;
@@ -91,21 +91,47 @@ const filter_reducer = (state, action) => {
       }
     }
     case FILTER_PRODUCTS:{
-      const {filter:{text,category},all_products}=state
-      console.log(category.toLowerCase())
+      const {filter:{text,category,company,color,price,shipping},all_products}=state
       let newProductFilter=[...all_products]
       if(text)
       {
-        newProductFilter=all_products.filter((product)=>{
+        newProductFilter=newProductFilter.filter((product)=>{
           return product.name.toLowerCase().includes(text.toLowerCase())===true
         })
       }
      
       if (category!=='all')
       {
-        newProductFilter=all_products.filter((product)=>{
+        newProductFilter=newProductFilter.filter((product)=>{
           return product.category===category
         })
+      }
+      if (company!=='all')
+      {
+        newProductFilter=newProductFilter.filter((product)=>{
+          return product.company===company
+        })
+      }
+      if (color!=='all')
+      {
+        newProductFilter=newProductFilter.filter((product)=>{
+          return product.colors.includes(color)
+        })
+        
+      }
+      if (price)
+      {
+        newProductFilter=newProductFilter.filter((product)=>{
+          return product.price <= price
+        })
+        
+      }
+      if (shipping)
+      {
+        newProductFilter=newProductFilter.filter((product)=>{
+          return product.shipping
+        })
+        
       }
      
       return {
@@ -113,9 +139,24 @@ const filter_reducer = (state, action) => {
         filter_products:newProductFilter
       }
     }
+    case CLEAR_FILTERS:{
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          text:'',
+          category:'all',
+          company:'all',
+          color:'all',
+          price:action.payload,
+          shipping:false,
+      
+        }
+      }
+    }
     default:return state
   }
-  throw new Error(`No Matching "${action.type}" - action type`)
+  
 }
 
 export default filter_reducer

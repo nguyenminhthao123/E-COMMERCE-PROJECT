@@ -1,29 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { FaPlus, FaMinus } from 'react-icons/fa'
 
-const AmountButtons = ({stock}) => {
-  const [amount, setAmount]=useState(1)
-  const increaseAmount=()=>{
-    setAmount(prevamount=>{
-      let templateAmount=prevamount +1
-      if (templateAmount>stock)
-      {
-        templateAmount=stock
-      }
-      return templateAmount 
-    })
-  }
-  const decreaseAmount=()=>{
-    setAmount(prevamount=>{
-      let templateAmount=prevamount - 1
-      if (templateAmount<1)
-      {
-        templateAmount=1
-      }
-      return templateAmount 
-    })
-  }
+const AmountButtons = ({increaseAmount,decreaseAmount,amount}) => {
+  
   return <Wrapper>
    <button onClick={decreaseAmount}><FaMinus/></button>
    <h2>{amount}</h2>

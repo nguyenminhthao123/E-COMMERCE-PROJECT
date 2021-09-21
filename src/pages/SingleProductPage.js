@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useProductsContext } from '../context/products_context'
 import { single_product_url as url } from '../utils/constants'
 import { formatPrice } from '../utils/helpers'
@@ -15,18 +15,19 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 const SingleProductPage = () => {
-  const { fetchSingleProduct, products_single_begin: loading, products_single_error: error, products_single: products } = useProductsContext()
+  const { fetchSingleProduct, products_single_begin: loading, products_single_error: error, products_single: product } = useProductsContext()
   const { id } = useParams()
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`)
-  }, [id])
+    //eslint-disable-next-line
+  },[id])
   if (loading) {
     return <Loading />
   }
   if (error) {
     return <Error />
   }
-  const { name, price, description, stock, id: suku, company, images,stars,reviews,colors } = products
+  const { name, price, description, stock, id: suku, company, images,stars,reviews } = product
   return <Wrapper>
     <PageHero products title={name}></PageHero>
     <div className="section section-center page">
@@ -51,7 +52,7 @@ const SingleProductPage = () => {
             {company}
           </p>
           <hr></hr>
-          {stock > 0 && <AddToCart colors={colors} stock={stock} />}
+          {stock > 0 && <AddToCart product={product} />}
         </section>
       </div>
     </div>

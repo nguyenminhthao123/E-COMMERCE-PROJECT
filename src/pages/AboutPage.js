@@ -7,7 +7,7 @@ const AboutPage = () => {
   return <main>
     <PageHero title="About"></PageHero>
     <Wrapper className="page section section-center">
-      <img src={aboutImg} alt="about image" ></img>
+      <img src={aboutImg} alt="about img" ></img>
       <div>
         <div className="title">
           <h2>Our Story</h2>

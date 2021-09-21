@@ -7,34 +7,37 @@ function App() {
 
 
   return (<>
-    <Router>
-      <Navbar />
-      <Sidebar />
-      <Switch>
-        <Route path="/" exact>
-          <HomePage />
-        </Route>
-        <Route path="/about" exact>
-          <AboutPage />
-        </Route>
-        <Route path="/cart" exact>
-          <CartPage />
-        </Route>
-        <Route path="/products" exact>
-          <ProductsPage />
-        </Route>
-        <Route path="/checkout" exact>
-          <CheckoutPage />
-        </Route>
-        <Route path="/products/:id" exact>
-          <SingleProductPage />
-        </Route>
-        <Route path="*" exact>
-          <ErrorPage />
-        </Route>
-      </Switch>
-      <Footer />
-    </Router>
+    <AuthWrapper>
+      <Router>
+        <Navbar />
+        <Sidebar />
+        <Switch>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+          <Route path="/about" exact>
+            <AboutPage />
+          </Route>
+          <Route path="/cart" exact>
+            <CartPage />
+          </Route>
+          <Route path="/products" exact>
+            <ProductsPage />
+          </Route>
+          <PrivateRoute path="/checkout" exact>
+            <CheckoutPage />
+          </PrivateRoute>
+          <Route path="/products/:id" exact>
+            <SingleProductPage />
+          </Route>
+          <Route path="*" exact>
+            <ErrorPage />
+          </Route>
+        </Switch>
+        <Footer />
+      </Router>
+    </AuthWrapper>
+
 
 
   </>)

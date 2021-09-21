@@ -54,8 +54,16 @@ export const FilterProvider = ({ children }) => {
     {
       value=(e.target.textContent)
     }
-    console.log(value)
+    if (name==="shipping")
+    {
+      value=e.target.checked
+    }
+    console.log(value);
+   
     dispatch({type:UPDATE_FILTERS,payload:{name,value}})
+   }
+   const clearFilters=(price)=>{
+     dispatch({type:CLEAR_FILTERS,payload:price})
    }
   useEffect(() => {
     dispatch({ type: LOAD_PRODUCTS, payload: products })
@@ -71,7 +79,8 @@ export const FilterProvider = ({ children }) => {
       girdViews,
       listViews,
       sortProducts,
-      filterProducts
+      filterProducts,
+      clearFilters
     }}>
       {children}
     </FilterContext.Provider>
