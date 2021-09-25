@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useCartContext } from '../context/cart_context'
-// import { useUserContext } from '../context/user_context'
+import { useUserContext } from '../context/user_context'
 import { formatPrice } from '../utils/helpers'
 import { Link } from 'react-router-dom'
 
 const CartTotals = () => {
   const { total_amount, shipping_free } = useCartContext()
+  const {myUser,loginWithRedirect ,isCheckout}=useUserContext()
   return <Wrapper>
     <div>
       <article>
@@ -15,7 +16,8 @@ const CartTotals = () => {
         <hr/>
         <h4>order total: <span>{formatPrice(total_amount + shipping_free)}</span></h4>
       </article>
-      <Link to='/checkout' className='btn'>Login</Link>
+      { isCheckout?myUser? <Link to='/checkout' className='btn'>PROCEED TO CHECKOUT</Link>:<button onClick={loginWithRedirect}  className='btn'>Login</button>:null}
+     
     </div>
   </Wrapper>
 }
