@@ -49,16 +49,13 @@ const cart_reducer = (state, action) => {
 
     }
     case REMOVE_CART_ITEM: {
-      const tempItem = state.cart.findIndex((c) => {
-        return c.id === action.payload
+      const tempItem = state.cart.filter((c) => {
+        return c.id !== action.payload
       })
-      if (tempItem !== -1) {
-        state.cart.splice(tempItem, 1)
-      }
-      localStorage.setItem('cart', JSON.stringify(state.cart))
+     
       return {
         ...state,
-        cart: state.cart,
+        cart:tempItem,
       }
     }
     case CLEAR_CART: {
